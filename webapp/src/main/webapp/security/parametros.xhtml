@@ -1,0 +1,95 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<h:form>
+				<p:commandButton icon="fa fa-fw fa-plus" value="#{btn['global.add']}"
+									actionListener="#{parametroVM.add}"
+									rendered="false"
+									title="#{lbl['param.tooltip.add']}">
+							<p:ajax event="dialogReturn"
+								listener="#{parametroVM.onAdd}"
+								update="mainTable,msg" />
+					</p:commandButton>
+					<p:separator rendered="false"/>
+					<p:dataTable var="parametro" value="#{parametroVM.parametroes}"
+						widgetVar="parametrosTable" id="mainTable"
+						emptyMessage="#{lbl['global.table.noresult']}">
+
+						<f:facet name="header">
+							<h:outputText value="#{lbl['param.table.header']}" />
+						</f:facet>
+
+						<p:column filterBy="#{parametro.clave}" headerText="#{lbl['param.table.cols.clave']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{parametro.clave}" />
+						</p:column>
+						
+						<p:column filterBy="#{parametro.descripcion}" headerText="#{lbl['param.table.cols.desc']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{parametro.descripcion}" />
+						</p:column>
+						
+						<p:column filterBy="#{parametro.valor}" headerText="#{lbl['param.table.cols.valor']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{parametro.valor}" />
+						</p:column>
+						
+						<p:column filterBy="#{parametro.fecReg}" headerText="#{lbl['global.table.cols.add']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{parametro.fecReg}" />
+							<h:outputText value=" - " />
+							<h:outputText value="#{parametro.usuReg.clave}" />
+						</p:column>
+						
+						<p:column filterBy="#{parametro.fecMod}" headerText="#{lbl['global.table.cols.mod']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{parametro.fecMod}" />
+							<h:outputText value=" - " />
+							<h:outputText value="#{parametro.usuMod.clave}" />
+						</p:column>
+
+						<p:column headerText="#{lbl['global.table.cols.acction']}">
+							<div align="left">
+								<p:commandButton icon="fa fa-fw fa-edit"
+									actionListener="#{parametroVM.editar(parametro)}"
+									title="#{lbl['param.tooltip.edit']}">
+									<p:ajax event="dialogReturn" listener="#{parametroVM.onAdd}"
+										update="mainTable,msg" />
+								</p:commandButton>
+								<p:commandButton icon="fa fa-fw fa-remove"
+									title="#{lbl['param.tooltip.delete']}"
+									rendered="false"
+									action="#{parametroVM.eliminar(parametro)}" update="mainTable,msg">
+									<p:confirm header="#{lbl['global.lbl.confirm']}"
+										message="#{msg['global.msg.confirm.delete']}"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</div>
+						</p:column>
+
+						
+
+					</p:dataTable>
+				</h:form>
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="#{btn['global.si']}" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="#{btn['global.no']}" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

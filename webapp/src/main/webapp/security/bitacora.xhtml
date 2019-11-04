@@ -1,0 +1,63 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<p:dataTable var="bitacora" value="#{bitacoraVM.bitacoraes}"
+					widgetVar="bitacorasTable"
+					emptyMessage="#{lbl['global.table.noresult']}" paginator="true"
+					currentPageReportTemplate="{currentPage} DE {totalPages}"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="100,200,300">
+
+					<f:facet name="header">
+						<h:outputText value="#{lbl['bitacora.table.header']}" />
+					</f:facet>
+
+					<p:column filterBy="#{bitacora.evento.descripcion}"
+						headerText="#{lbl['bitacora.table.cols.evento']}"
+						filterMatchMode="contains" 
+						width="30%">
+						<h:outputText value="#{bitacora.evento.descripcion}" />
+					</p:column>
+
+					<p:column filterBy="#{bitacora.descripcion}"
+						headerText="#{lbl['bitacora.table.cols.descripcion']}"
+						filterMatchMode="contains"
+						width="55%">
+						<h:outputText value="#{bitacora.descripcion}" />
+					</p:column>
+
+
+					<p:column filterBy="#{bitacora.fecReg}"
+						headerText="#{lbl['bitacora.table.cols.registro']}"
+						filterMatchMode="contains"
+						width="15%">
+						<h:outputText value="#{bitacora.fecReg}" />
+						<h:outputText value=" - " />
+						<h:outputText value="#{bitacora.usuReg.clave}" />
+					</p:column>
+
+				</p:dataTable>
+			</div>
+			<p:blockUI block="mainForm" widgetVar="blockUi">
+				<h:panelGroup>
+					<h:outputText
+						styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+					<br />
+					<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+				</h:panelGroup>
+			</p:blockUI>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

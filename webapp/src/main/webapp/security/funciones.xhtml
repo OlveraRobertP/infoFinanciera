@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<h:form>
+					<p:dataTable var="funcion" value="#{funcionVM.funciones}"
+						widgetVar="funcionsTable"
+						emptyMessage="#{lbl['global.table.noresult']}">
+
+						<f:facet name="header">
+							<h:outputText value="#{lbl['funcion.table.header']}" />
+						</f:facet>
+
+						<p:column filterBy="#{funcion.clave}" headerText="#{lbl['funcion.table.cols.clave']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.clave}" />
+						</p:column>
+						
+						<p:column filterBy="#{funcion.nombre}" headerText="#{lbl['funcion.table.cols.nombre']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.nombre}" />
+						</p:column>
+						
+						<p:column filterBy="#{funcion.etiqueta}" headerText="#{lbl['funcion.table.cols.etiqueta']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.etiqueta}" />
+						</p:column>
+						
+						<p:column filterBy="#{funcion.icono}" headerText="#{lbl['funcion.table.cols.icono']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.icono}" />
+						</p:column>
+						
+						<p:column filterBy="#{funcion.orden}" headerText="#{lbl['funcion.table.cols.orden']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.orden}" />
+						</p:column>
+						
+						<p:column filterBy="#{funcion.fecReg}" headerText="#{lbl['global.table.cols.add']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.fecReg}" />
+							<h:outputText value=" - " />
+							<h:outputText value="#{funcion.usuReg.clave}" />
+						</p:column>
+						
+						<p:column filterBy="#{funcion.fecMod}" headerText="#{lbl['global.table.cols.mod']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{funcion.fecMod}" />
+							<h:outputText value=" - " />
+							<h:outputText value="#{funcion.usuMod.clave}" />
+						</p:column>
+						
+
+					</p:dataTable>
+				</h:form>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

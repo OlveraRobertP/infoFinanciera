@@ -1,0 +1,60 @@
+CREATE DATABASE  IF NOT EXISTS `base-sys` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `base-sys`;
+-- MySQL dump 10.13  Distrib 8.0.16, for macos10.14 (x86_64)
+--
+-- Host: localhost    Database: base-sys
+-- ------------------------------------------------------
+-- Server version	5.7.28
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `seg_bitacora`
+--
+
+DROP TABLE IF EXISTS `seg_bitacora`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `seg_bitacora` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EVENTO` int(11) NOT NULL,
+  `DESCRIPCION` varchar(1000) DEFAULT NULL,
+  `F_ALTA` datetime NOT NULL,
+  `ID_USUARIO_ALTA` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `fk_bita_bitaeven_idx` (`EVENTO`),
+  KEY `FK_BIT_USU_ADD_idx` (`ID_USUARIO_ALTA`),
+  CONSTRAINT `FK_BIT_USU_ADD` FOREIGN KEY (`ID_USUARIO_ALTA`) REFERENCES `seg_usuarios` (`ID_USUARIO`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bita_bitaeven` FOREIGN KEY (`EVENTO`) REFERENCES `seg_bitacora_eventos` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=432 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `seg_bitacora`
+--
+
+LOCK TABLES `seg_bitacora` WRITE;
+/*!40000 ALTER TABLE `seg_bitacora` DISABLE KEYS */;
+INSERT INTO `seg_bitacora` VALUES (423,4,NULL,'2019-10-29 04:26:30',1),(424,5,NULL,'2019-10-29 04:26:36',1),(425,4,NULL,'2019-10-29 04:26:46',1),(426,4,NULL,'2019-10-29 15:51:33',1),(427,2,'Rol [clave=1, nombre=ADMINISTRADOR]','2019-10-29 15:53:25',1),(428,2,'Usuario [clave=ADMIN, nombre=Jose Roberto, paterno=Olvera, materno=Perez, email=jr_robert@live.com.mx, rol=Rol [clave=1, nombre=ADMINISTRADOR], ultimoAcceso=2019-10-29 09:51:33.0, resetPassword=true, activo=true]','2019-10-29 15:54:10',1),(429,5,NULL,'2019-10-29 15:54:18',1),(430,4,NULL,'2019-10-29 15:54:24',1),(431,4,NULL,'2019-10-29 19:26:36',1);
+/*!40000 ALTER TABLE `seg_bitacora` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-10-31 17:06:12

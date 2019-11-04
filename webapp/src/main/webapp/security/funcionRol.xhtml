@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<h:form>
+					<!-- ROL -->
+					<p:selectOneMenu value="#{funcionRolVM.rolSelected}" id="cbmRol"
+						title="#{lbl['rolpriv.tooltip.rol']}">
+						<p:ajax event="change" update="tableMenus"
+							listener="#{funcionRolVM.cargaPrivilegios()}" />
+						<f:selectItem itemLabel="#{lbl['rolpriv.lbl.rol']}"
+							noSelectionOption="true" />
+						<f:selectItems var="rol" value="#{funcionRolVM.rolesDisponibles}"
+							itemValue="#{rol.clave}" itemLabel="#{rol.clave} - #{rol.nombre}" />
+					</p:selectOneMenu>
+					<p:separator/>
+					<!-- table de menus -->
+					<p:treeTable value="#{funcionRolVM.menus}" var="men" id="tableMenus" selectionMode="checkbox"
+						selection="#{funcionRolVM.menusSelected}">
+						<f:facet name="header">#{lbl['rolpriv.title.privs']}</f:facet>
+						<p:column headerText="#{lbl['rolpriv.table.cols.nombre']}" width="30%">
+							<h:outputText value="#{men.nombre}" />
+						</p:column>
+						<p:column headerText="#{lbl['rolpriv.table.cols.descripcion']}"  width="70%">
+							<h:outputText
+								value="#{men['class'].simpleName eq 'Funcion' ? men.descripcion : ''}" />
+						</p:column>
+					</p:treeTable>
+					<p:panelGrid style="width:100%;border:0;" id="panelButton">
+						<div style="text-align: right; padding: 3px;">
+							<p:commandButton icon="fa fa-fw fa-save"
+								styleClass="btn btn-primary"
+								title="#{lbl['rolpriv.tooltip.btn.save']}"
+								value="#{btn['global.save']}"
+								actionListener="#{funcionRolVM.asignarPrivilegios()}"
+								onstart="PF('blockUiGuardar').show()"
+								oncomplete="PF('blockUiGuardar').hide()" update="tableMenus,msg" />
+						</div>
+					</p:panelGrid>
+				</h:form>
+			</div>
+		</h:form>
+		<p:blockUI block="mainForm" widgetVar="blockUiGuardar">
+			<h:panelGroup>
+				<h:outputText
+					styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+				<br />
+				<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+			</h:panelGroup>
+		</p:blockUI>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="#{btn['global.si']}" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="#{btn['global.no']}" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>
+</html>

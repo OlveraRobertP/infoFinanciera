@@ -1,0 +1,42 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition>
+		<div class="header">
+			<div style="display: inline-block; width: 20%">
+				<img src="#{request.contextPath}/images/logoPsc.png" />
+			</div>
+			<div style="display: inline-block; width:60%;">
+				<div style="display: float">
+					<h:form>
+						<p:growl id="messages" />
+						<p:menubar model="#{menuVM.model}"
+							rendered="#{menuVM.canViewMenu()}">
+							<f:facet name="options">
+								<!-- <p:inputText style="margin:1px 10px 1px 1px;"
+									placeholder="Search" /> -->
+								<p:commandButton value="#{btn['global.logout']}"
+									icon="fa fa-sign-out" 
+									oncomplete="location.href=login/login.xhtml"
+									action="#{loginVM.logout}" />
+							</f:facet>
+						</p:menubar>
+					</h:form>
+				</div>
+			</div>
+			<div style="display: inline-block; width:15%;padding-left: 30px">
+				<p:outputLabel escape="true" value="#{sessionVM.userInSession.nombre} 
+				#{sessionVM.userInSession.paterno} #{sessionVM.userInSession.rol.nombre}"
+				 rendered="#{menuVM.canViewMenu()}" />
+			</div>
+		</div>
+		<p:separator />
+	</ui:composition>
+</body>
+</html>

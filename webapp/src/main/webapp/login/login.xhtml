@@ -1,0 +1,54 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm" >
+			 <div  class="container-center">
+			 	<div class="ui-inputgroup">
+			 		<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+			 		<p:inputText value="#{loginVM.username}"  id="user"
+			 		placeholder="#{lbl['global.holder.usuario']}" style="width:100%"
+			 		required="true" requiredMessage="#{msg['global.cmp.requeried']}" />
+			 		<p:message id="msgUser" for="user" />
+			 	</div>
+			 	<br/>
+			 	<div class="ui-inputgroup">
+			 		<span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+			 		<p:password  value="#{loginVM.password}" id="pass"
+			 		required="true" requiredMessage="#{msg['global.cmp.requeried']}"
+			 		placeholder="#{lbl['global.holder.password']}" 
+			 		style="width:100%" />
+			 		<p:message id="msgPass" for="pass" />
+			 	</div>
+			 	<br/>
+			 	<div >
+			 		<p:commandButton value="#{btn['global.acceso']}"  
+		       	    action="#{loginVM.login}" update="msg,msgUser,msgPass" style="width:100%"
+		       	    onstart="PF('blockUi').show()" onsuccess="PF('blockUi').hide();" 
+		       	    ajax="false"
+		       	    oncomplete="alert();location.href='login/login.xhtml'"
+		       	    icon="fa fa-play" />
+			 	</div>		       	
+			 </div>
+			 		
+			 			
+		</h:form>
+		<p:blockUI block="mainForm" widgetVar="blockUi">
+			<h:panelGroup>
+				<h:outputText
+					styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+				<br />
+				<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+			</h:panelGroup>
+		</p:blockUI>
+	</ui:define>
+</ui:composition>
+</html>

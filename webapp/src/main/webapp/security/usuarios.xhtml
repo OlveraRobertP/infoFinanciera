@@ -1,0 +1,142 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<h:form>
+					<p:commandButton icon="fa fa-fw fa-plus"
+						value="#{btn['global.add']}" actionListener="#{usuarioVM.add}"
+						title="#{lbl['usuario.tooltip.add']}">
+						<p:ajax event="dialogReturn" listener="#{usuarioVM.onAdd}"
+							update="mainTable,msg" />
+					</p:commandButton>
+					<p:separator />
+					<p:dataTable var="usu" value="#{usuarioVM.usuarios}"
+						widgetVar="mainTable" id="mainTable"
+						emptyMessage="#{lbl['global.table.noresult']}">
+
+						<f:facet name="header">
+							<h:outputText value="#{lbl['usuario.table.header']}" />
+						</f:facet>
+
+						<p:column filterBy="#{usu.clave}"
+							headerText="#{lbl['usuario.table.cols.clave']}"
+							filterMatchMode="contains">
+							<h:outputText value="#{usu.clave}" />
+						</p:column>
+
+						<p:column filterBy="#{usu.nombre}"
+							headerText="#{lbl['usuario.table.cols.nombre']}"
+							filterMatchMode="contains">
+							<h:outputText value="#{usu.nombre} #{usu.paterno} #{usu.materno}" />
+						</p:column>
+
+						<p:column filterBy="#{usu.email}"
+							headerText="#{lbl['usuario.table.cols.email']}"
+							filterMatchMode="contains">
+							<h:outputText value="#{usu.email}" />
+						</p:column>
+
+						<p:column filterBy="#{usu.rol.nombre}"
+							headerText="#{lbl['usuario.table.cols.rol']}"
+							filterMatchMode="contains">
+							<h:outputText value="#{usu.rol.nombre}" />
+						</p:column>
+
+						<p:column filterBy="#{usu.ultimoAcceso}"
+							headerText="#{lbl['usuario.table.cols.ultimoacceso']}"
+							filterMatchMode="contains">
+							<div align="center">
+								<h:outputText value="#{usu.ultimoAcceso}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+							</div>
+						</p:column>
+
+						<p:column filterBy="#{usu.fecReg}"
+							headerText="#{lbl['global.table.cols.add']}"
+							filterMatchMode="contains">
+							<div align="center">
+								<h:outputText value="#{usu.fecReg}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+								<h:outputText value=" - " />
+								<h:outputText value="#{usu.usuReg.clave}" />
+							</div>
+						</p:column>
+
+						<p:column filterBy="#{usu.fecMod}"
+							headerText="#{lbl['global.table.cols.mod']}"
+							filterMatchMode="contains">
+							<div align="center">
+								<h:outputText value="#{usu.fecMod}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+								</h:outputText>
+								<h:outputText value=" - " />
+								<h:outputText value="#{usu.usuMod.clave}" />
+							</div>
+						</p:column>
+
+
+
+						<p:column headerText="#{lbl['global.table.cols.acction']}">
+							<div align="left">
+								<p:commandButton icon="fa fa-fw fa-edit"
+									actionListener="#{usuarioVM.editar(usu)}"
+									title="#{lbl['usuario.tooltip.edit']}">
+									<p:ajax event="dialogReturn" listener="#{usuarioVM.onAdd}"
+										update="mainTable,msg" />
+								</p:commandButton>
+
+								<p:commandButton icon="fa fa-fw fa-remove"
+									title="#{lbl['usuario.tooltip.delete']}"
+									action="#{usuarioVM.eliminar(usu)}" update="mainTable,msg">
+									<p:confirm header="#{lbl['global.lbl.confirm']}"
+										message="#{msg['global.msg.confirm.delete']}"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+
+								<p:commandButton icon="fa fa-fw fa-cogs"
+									title="#{lbl['usuario.tooltip.reset.pass']}"
+									onstart="PF('blockUi').show()"
+									onsuccess="PF('blockUi').hide();"
+									action="#{usuarioVM.resetPassword(usu)}" update="mainTable,msg">
+									<p:confirm header="#{lbl['global.lbl.confirm']}"
+										message="#{msg['user.confirm.reset.password']} #{usu.clave} - #{usu.nombre}"
+										icon="ui-icon-alert">
+										<f:param value="param0" />
+									</p:confirm>
+								</p:commandButton>
+							</div>
+						</p:column>
+
+					</p:dataTable>
+					<p:blockUI block="mainForm" widgetVar="blockUi">
+						<h:panelGroup>
+							<h:outputText
+								styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+							<br />
+							<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+						</h:panelGroup>
+					</p:blockUI>
+				</h:form>
+			</div>
+		</h:form>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="#{btn['global.si']}" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="#{btn['global.no']}" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>
+</html>

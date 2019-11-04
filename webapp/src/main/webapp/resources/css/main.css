@@ -1,0 +1,125 @@
+@import
+	url(//db.onlinewebfonts.com/c/b2642fb116932e2aba2aee3de7fb4351?family=ITC+Officina+Serif)
+	;
+
+@font-face {
+	font-family: "ITC Officina Serif";
+	src:
+		url("//db.onlinewebfonts.com/t/b2642fb116932e2aba2aee3de7fb4351.eot");
+	src:
+		url("//db.onlinewebfonts.com/t/b2642fb116932e2aba2aee3de7fb4351.eot?#iefix")
+		format("embedded-opentype"),
+		url("//db.onlinewebfonts.com/t/b2642fb116932e2aba2aee3de7fb4351.woff2")
+		format("woff2"),
+		url("//db.onlinewebfonts.com/t/b2642fb116932e2aba2aee3de7fb4351.woff")
+		format("woff"),
+		url("//db.onlinewebfonts.com/t/b2642fb116932e2aba2aee3de7fb4351.ttf")
+		format("truetype"),
+		url("//db.onlinewebfonts.com/t/b2642fb116932e2aba2aee3de7fb4351.svg#ITC Officina Serif")
+		format("svg");
+}
+
+/* We can adjust the font-size value if we wish to make PrimeFaces components stand out by making them larger or smaller so that they don't take up as much space on the page */
+.ui-widget {
+	color: #63666A;
+	font-family: "ITC Officina Serif";
+	font-size: 13px;
+	font-style: normal;
+}
+
+.ui-widget .ui-widget {
+	color: #63666A;
+	font-family: "ITC Officina Serif";
+	font-size: 13px;
+	font-style: normal;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
+	{
+	color: #63666A;
+	font-family: "ITC Officina Serif";
+	font-size: 13px;
+	font-style: normal;
+}
+
+
+
+.header {
+	color: #63666A;
+	font-family: "ITC Officina Serif";
+	background-color: #FFF;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.footer div {
+	color: #63666A;
+	font-family: "ITC Officina Serif";
+	background-color: #FFF;
+	text-align: center;
+}
+
+.container-center {
+	margin: auto;
+	width: 40%;
+	padding: 10px;
+}
+
+.container-mttos {
+	margin: auto;
+	width: 90%;
+	padding: 10px;
+}
+
+.imagen-center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+
+.white-button.ui-button.ui-state-default {
+	background-color: #ffffff;
+	color: #222222;
+	border-color: #d6d6d6;
+	/* with the exported variables from Nova and Luna Themes*/
+	border-color: var(- -input-border-color, #d6d6d6);
+}
+
+.white-button.ui-button.ui-state-default:enabled:hover, .white-button.ui-button.ui-state-default:focus
+	{
+	background-color: #f2f2f2;
+	border-color: #ccc;
+	color: #373a3c;
+	/* with the exported variables from Nova and Luna Themes*/
+	border-color: var(- -input-hover-border-color, #ccc);
+}
+
+.green-button.ui-button.ui-state-default {
+	background-color: #5cb85c;
+	border-color: #5cb85c;
+	color: #fff;
+}
+
+.green-button.ui-button.ui-state-default:enabled:hover, .green-button.ui-button.ui-state-default:focus
+	{
+	background-color: #4cae4c;
+	border-color: #5cb85c;
+}
+
+.red-button.ui-button.ui-state-default {
+	background-color: #d9534f;
+	border-color: #d9534f;
+	color: #fff;
+}
+
+.red-button.ui-button.ui-state-default:enabled:hover, .red-button.ui-button.ui-state-default:focus
+	{
+	background-color: #d43f3a;
+	border-color: #d9534f;
+}
+
+
+
+

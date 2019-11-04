@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="userProperties">
+        <structure>
+            <property name="name">Data Cube.ds0RazonesFinancieras.x</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">Data Cube.ds0RazonesFinancieras.y</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+    </list-property>
+    <property name="Data Cube.ds0RazonesFinancieras.x">135</property>
+    <property name="Data Cube.ds0RazonesFinancieras.y">80</property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">72</property>
+    <parameters>
+        <scalar-parameter name="year" id="247">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2019</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="month" id="248">
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="razones" id="978">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <script-data-source name="srcInfo" id="4"/>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="ds0RazonesFinancieras" id="5">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">detalleName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">detalleSaldo</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">razon</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">valor</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">interpretacion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">orden</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">detalleName</property>
+                    <text-property name="displayName">Cuenta Detalle</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">detalleSaldo</property>
+                    <text-property name="displayName">Saldo Detalle</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">razon</property>
+                    <text-property name="displayName">Razon</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">valor</property>
+                    <text-property name="displayName">Valor</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">interpretacion</property>
+                    <text-property name="displayName">Interpretacion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">orden</property>
+                    <text-property name="displayName">Orden</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">detalleName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">detalleSaldo</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">razon</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">valor</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">interpretacion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">orden</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">srcInfo</property>
+            <method name="open"><![CDATA[count = 0;
+
+year = reportContext.getParameterValue("year");
+month = reportContext.getParameterValue("month");
+razonesSel = reportContext.getParameterValue("razones");
+
+importPackage(Packages.com.robolverap.reports)
+razonesFinancieras = new RazonesFinancierasRS();
+
+//Load the List
+
+datos = razonesFinancieras.getInformacion(year,month,razonesSel);
+]]></method>
+            <method name="fetch"><![CDATA[if(count < datos.size()){
+       row["razon"] = datos.get(count).getRazon();
+       row["valor"] = datos.get(count).getValor();
+       row["interpretacion"] = datos.get(count).getInterpretacion();
+       row["detalleName"] = datos.get(count).getDetalleName();
+       row["detalleSaldo"] = datos.get(count).getDetalleSaldo();
+       row["orden"] = datos.get(count).getOrden();
+       count++;
+       return true;
+}
+
+return false;
+]]></method>
+        </script-data-set>
+        <script-data-set name="dsParametros" id="595">
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">srcInfo</property>
+            <method name="open"><![CDATA[// create instance of
+// the GetStockHistory class
+importPackage(Packages.com.robolverap.reports)
+balanceService = new EstadoResultadosRS();
+
+//Load the List
+
+parameters = balanceService.getParametros();
+
+vars["representanteLegal"]= parameters.get("REP_LEGAL").getValor();
+vars["contador"]=parameters.get("CONTADOR").getValor();
+]]></method>
+            <method name="fetch"><![CDATA[
+return false;]]></method>
+        </script-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="Data Cube" id="861">
+            <property name="dimensions">
+                <tabular-dimension name="Group" id="862">
+                    <property name="defaultHierarchy">NewTabularHierarchy</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy" id="863">
+                            <property name="levels">
+                                <tabular-level name="Razon" id="864">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">razon</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="measureGroups">
+                <tabular-measure-group name="Summary Field" id="893">
+                    <property name="measures">
+                        <tabular-measure name="Cuenta Detalle" id="894">
+                            <property name="function">count</property>
+                            <expression name="measureExpression" type="javascript">dataSetRow["detalleName"]</expression>
+                            <property name="dataType">integer</property>
+                        </tabular-measure>
+                        <tabular-measure name="Saldo Detalle" id="895">
+                            <expression name="measureExpression" type="javascript">dataSetRow["detalleSaldo"]</expression>
+                            <property name="dataType">decimal</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+            </property>
+            <property name="dataSet">ds0RazonesFinancieras</property>
+        </tabular-cube>
+    </cubes>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[Reporte generado el <value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="7">
+            <property name="dataSet">ds0RazonesFinancieras</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <text-property name="displayName">fechaReporte</text-property>
+                    <expression name="expression" type="javascript">var year =params["year"].value
+var month =params["month"].value
+
+importPackage( Packages.java.text );
+importPackage( Packages.java.util );
+
+var calendar = Calendar.getInstance();	
+calendar.set(Calendar.YEAR, year);
+calendar.set(Calendar.MONTH, month-1);
+calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+
+var sdf = new SimpleDateFormat("dd 'de' MMMMM 'de' yyyy", reportContext.getLocale());
+var mydtf1 = sdf.format( calendar.getTime() );
+"Razones Financieras a " + mydtf1;</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                 
+            </list-property>
+            <column id="26">
+                <property name="width">15%</property>
+            </column>
+            <column id="27">
+                <property name="width">40%</property>
+            </column>
+            <column id="28">
+                <property name="width">15%</property>
+            </column>
+            <column id="29">
+                <property name="width">15%</property>
+            </column>
+            <column id="30">
+                <property name="width">15%</property>
+            </column>
+            <header>
+                <row id="8">
+                    <cell id="9">
+                        <property name="colSpan">1</property>
+                        <property name="rowSpan">3</property>
+                        <image id="288">
+                            <property name="height">0.5972222222222222in</property>
+                            <property name="width">0.4583333333333333in</property>
+                            <property name="source">file</property>
+                            <expression name="uri" type="constant">images/logoPsc.png</expression>
+                        </image>
+                    </cell>
+                    <cell id="10">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <text id="301">
+                            <property name="backgroundColor">#AA0C2C</property>
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">14pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">white</property>
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[INOVACION COMERCIAL PSC, SA DE CV]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="289">
+                    <cell id="291">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <text id="302">
+                            <property name="backgroundColor">#FED008</property>
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">5pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="contentType">auto</property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="295">
+                    <cell id="297">
+                        <property name="colSpan">4</property>
+                        <property name="rowSpan">1</property>
+                        <data id="276">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundColor">#B2AA9F</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">serif</property>
+                            <property name="fontSize">12pt</property>
+                            <property name="fontWeight">normal</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">normal</property>
+                            <property name="color">white</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$#,##0.00;$(#,##0.00){RoundingMode=HALF_UP}</property>
+                                <property name="locale">es_MX</property>
+                            </structure>
+                            <property name="textAlign">center</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <property name="resultSetColumn">Column Binding</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+        </table>
+        <table id="916">
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">medium</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">medium</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">medium</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">medium</property>
+            <property name="dataSet">ds0RazonesFinancieras</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">detalleName</property>
+                    <text-property name="displayName">Cuenta Detalle</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["detalleName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">detalleSaldo</property>
+                    <text-property name="displayName">Saldo Detalle</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["detalleSaldo"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">razon</property>
+                    <text-property name="displayName">Razon</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["razon"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">valor</property>
+                    <text-property name="displayName">Valor</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["valor"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">interpretacion</property>
+                    <text-property name="displayName">Interpretacion</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["interpretacion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">orden</property>
+                    <text-property name="displayName">Orden</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["orden"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="945"/>
+            <column id="946"/>
+            <header>
+                <row id="917">
+                    <cell id="918">
+                        <label id="919">
+                            <text-property name="text">Razon</text-property>
+                        </label>
+                    </cell>
+                    <cell id="920"/>
+                </row>
+            </header>
+            <group id="963">
+                <property name="groupName">razonGroup</property>
+                <expression name="keyExpr" type="javascript">row["razon"]</expression>
+                <structure name="toc">
+                    <expression name="expressionValue" type="javascript">row["razon"]</expression>
+                </structure>
+                <property name="hideDetail">false</property>
+                <list-property name="sort">
+                    <structure>
+                        <expression name="key" type="javascript">row["orden"]</expression>
+                        <property name="direction">asc</property>
+                        <property name="strength">-1</property>
+                    </structure>
+                </list-property>
+                <header>
+                    <row id="964">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <cell id="965">
+                            <data id="976">
+                                <property name="fontWeight">bold</property>
+                                <property name="textAlign">right</property>
+                                <property name="resultSetColumn">razon</property>
+                            </data>
+                        </cell>
+                        <cell id="966">
+                            <data id="936">
+                                <property name="fontWeight">bold</property>
+                                <property name="resultSetColumn">valor</property>
+                            </data>
+                        </cell>
+                    </row>
+                </header>
+                <footer>
+                    <row id="970">
+                        <cell id="971">
+                            <property name="colSpan">2</property>
+                            <property name="rowSpan">1</property>
+                        </cell>
+                    </row>
+                </footer>
+            </group>
+            <detail>
+                <row id="928">
+                    <cell id="929">
+                        <data id="930">
+                            <property name="resultSetColumn">detalleName</property>
+                        </data>
+                    </cell>
+                    <cell id="931">
+                        <data id="932">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0.00{RoundingMode=HALF_UP}</property>
+                                <property name="locale">es_MX</property>
+                            </structure>
+                            <property name="resultSetColumn">detalleSaldo</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="939">
+                    <cell id="940"/>
+                    <cell id="941"/>
+                </row>
+            </footer>
+        </table>
+        <grid id="513">
+            <property name="width">100%</property>
+            <column id="514"/>
+            <row id="515">
+                <cell id="516">
+                    <label id="517">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">Bajo protesta de decir verdad, manifiesto que las cifras contenidas en este estado financiero son veraces y contienen toda la información referente a la situación financiera y/o los resultados de la empresa y afirmo que  somos legalmente responsables de la autenticidad y veracidad de las mismas, asumiendo asimismo, todo tipo de responsabilidad derivada de cualquier declaración en falso sobre las mismas.</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid id="518">
+            <property name="width">100%</property>
+            <property name="dataSet">dsParametros</property>
+            <column id="519">
+                <property name="width">10%</property>
+            </column>
+            <column id="520">
+                <property name="width">25%</property>
+            </column>
+            <column id="521">
+                <property name="width">20%</property>
+            </column>
+            <column id="522">
+                <property name="width">25%</property>
+            </column>
+            <column id="523">
+                <property name="width">10%</property>
+            </column>
+            <row id="524">
+                <property name="height">2cm</property>
+                <cell id="525"/>
+                <cell id="526">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                </cell>
+                <cell id="527"/>
+                <cell id="528">
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">thin</property>
+                </cell>
+                <cell id="529"/>
+            </row>
+            <row id="530">
+                <cell id="531"/>
+                <cell id="532">
+                    <label id="544">
+                        <property name="textAlign">center</property>
+                        <text-property name="text">Contador</text-property>
+                    </label>
+                </cell>
+                <cell id="533"/>
+                <cell id="534">
+                    <property name="textAlign">center</property>
+                    <label id="545">
+                        <text-property name="text">Representante Legal</text-property>
+                    </label>
+                </cell>
+                <cell id="535"/>
+            </row>
+            <row id="536">
+                <cell id="537"/>
+                <cell id="538">
+                    <data id="555">
+                        <property name="backgroundAttachment">scroll</property>
+                        <property name="backgroundPositionX">0%</property>
+                        <property name="backgroundPositionY">0%</property>
+                        <property name="backgroundRepeat">repeat</property>
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">10pt</property>
+                        <property name="fontWeight">normal</property>
+                        <property name="fontStyle">normal</property>
+                        <property name="fontVariant">normal</property>
+                        <property name="color">black</property>
+                        <property name="textLineThrough">none</property>
+                        <property name="textOverline">none</property>
+                        <property name="textUnderline">none</property>
+                        <property name="borderBottomColor">black</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftColor">black</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightColor">black</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopColor">black</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="marginTop">0pt</property>
+                        <property name="marginLeft">0pt</property>
+                        <property name="marginBottom">0pt</property>
+                        <property name="marginRight">0pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingBottom">1pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <structure name="numberFormat">
+                            <property name="category">Currency</property>
+                            <property name="pattern">$#,##0.00;$(#,##0.00){RoundingMode=HALF_UP}</property>
+                            <property name="locale">es_MX</property>
+                        </structure>
+                        <property name="textAlign">center</property>
+                        <property name="letterSpacing">normal</property>
+                        <property name="lineHeight">normal</property>
+                        <property name="orphans">2</property>
+                        <property name="textTransform">none</property>
+                        <property name="whiteSpace">normal</property>
+                        <property name="widows">2</property>
+                        <property name="wordSpacing">normal</property>
+                        <property name="display">block</property>
+                        <property name="pageBreakAfter">auto</property>
+                        <property name="pageBreakBefore">auto</property>
+                        <property name="pageBreakInside">auto</property>
+                        <property name="showIfBlank">false</property>
+                        <property name="canShrink">false</property>
+                        <property name="overflow">hidden</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">utilidadBEsteMes</property>
+                                <text-property name="displayName">contador</text-property>
+                                <expression name="expression" type="javascript">vars["contador"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">utilidadBEsteMes</property>
+                    </data>
+                </cell>
+                <cell id="539"/>
+                <cell id="540">
+                    <data id="556">
+                        <property name="backgroundAttachment">scroll</property>
+                        <property name="backgroundPositionX">0%</property>
+                        <property name="backgroundPositionY">0%</property>
+                        <property name="backgroundRepeat">repeat</property>
+                        <property name="fontFamily">serif</property>
+                        <property name="fontSize">10pt</property>
+                        <property name="fontWeight">normal</property>
+                        <property name="fontStyle">normal</property>
+                        <property name="fontVariant">normal</property>
+                        <property name="color">black</property>
+                        <property name="textLineThrough">none</property>
+                        <property name="textOverline">none</property>
+                        <property name="textUnderline">none</property>
+                        <property name="borderBottomColor">black</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftColor">black</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightColor">black</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopColor">black</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="marginTop">0pt</property>
+                        <property name="marginLeft">0pt</property>
+                        <property name="marginBottom">0pt</property>
+                        <property name="marginRight">0pt</property>
+                        <property name="paddingTop">1pt</property>
+                        <property name="paddingLeft">1pt</property>
+                        <property name="paddingBottom">1pt</property>
+                        <property name="paddingRight">1pt</property>
+                        <structure name="numberFormat">
+                            <property name="category">Currency</property>
+                            <property name="pattern">$#,##0.00;$(#,##0.00){RoundingMode=HALF_UP}</property>
+                            <property name="locale">es_MX</property>
+                        </structure>
+                        <property name="textAlign">center</property>
+                        <property name="letterSpacing">normal</property>
+                        <property name="lineHeight">normal</property>
+                        <property name="orphans">2</property>
+                        <property name="textTransform">none</property>
+                        <property name="whiteSpace">normal</property>
+                        <property name="widows">2</property>
+                        <property name="wordSpacing">normal</property>
+                        <property name="display">block</property>
+                        <property name="pageBreakAfter">auto</property>
+                        <property name="pageBreakBefore">auto</property>
+                        <property name="pageBreakInside">auto</property>
+                        <property name="showIfBlank">false</property>
+                        <property name="canShrink">false</property>
+                        <property name="overflow">hidden</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">utilidadBEsteMes</property>
+                                <text-property name="displayName">representanteLegal</text-property>
+                                <expression name="expression" type="javascript">vars["representanteLegal"]</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">utilidadBEsteMes</property>
+                    </data>
+                </cell>
+                <cell id="541"/>
+            </row>
+        </grid>
+    </body>
+    <property name="pageVariables">
+        <variable-element name="contador">
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="representanteLegal">
+            <property name="type">report</property>
+        </variable-element>
+    </property>
+</report>

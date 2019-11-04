@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<h:form>
+					<p:dataTable var="modulo" value="#{moduloVM.modulos}"
+						widgetVar="modulosTable"
+						emptyMessage="#{lbl['global.table.noresult']}">
+
+						<f:facet name="header">
+							<h:outputText value="#{lbl['modulo.table.header']}" />
+						</f:facet>
+
+						<p:column filterBy="#{modulo.clave}" headerText="#{lbl['modulo.table.cols.clave']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.clave}" />
+						</p:column>
+						
+						<p:column filterBy="#{modulo.nombre}" headerText="#{lbl['modulo.table.cols.nombre']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.nombre}" />
+						</p:column>
+						
+						<p:column filterBy="#{modulo.etiqueta}" headerText="#{lbl['modulo.table.cols.etiqueta']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.etiqueta}" />
+						</p:column>
+						
+						<p:column filterBy="#{modulo.icono}" headerText="#{lbl['modulo.table.cols.icono']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.icono}" />
+						</p:column>
+						
+						<p:column filterBy="#{modulo.orden}" headerText="#{lbl['modulo.table.cols.orden']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.orden}" />
+						</p:column>
+						
+						<p:column filterBy="#{modulo.fecReg}" headerText="#{lbl['global.table.cols.add']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.fecReg}" />
+							<h:outputText value=" - " />
+							<h:outputText value="#{modulo.usuReg.clave}" />
+						</p:column>
+						
+						<p:column filterBy="#{modulo.fecMod}" headerText="#{lbl['global.table.cols.mod']}"
+							 filterMatchMode="contains">
+							<h:outputText value="#{modulo.fecMod}" />
+							<h:outputText value=" - " />
+							<h:outputText value="#{modulo.usuMod.clave}" />
+						</p:column>
+						
+
+					</p:dataTable>
+				</h:form>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
