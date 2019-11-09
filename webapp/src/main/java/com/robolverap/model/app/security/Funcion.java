@@ -34,9 +34,6 @@ public class Funcion implements Serializable, Comparable<Funcion>{
 	@Column (name = "NOMBRE", nullable = false, length = 45)
 	private String nombre;
 	
-	@Column (name = "DESCRIPCION", nullable = false, length = 100)
-	private String descripcion;
-	
 	@Column (name = "F_ALTA", nullable = false)
 	private Date fecReg;
 	
@@ -84,14 +81,6 @@ public class Funcion implements Serializable, Comparable<Funcion>{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	
-	public String getDescripcion() {
-		return descripcion;
-	}
-	
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public Date getFecReg() {
@@ -206,7 +195,7 @@ public class Funcion implements Serializable, Comparable<Funcion>{
 
 	@Override
 	public String toString() {
-		return "Funcion [clave=" + clave + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
+		return "Funcion [clave=" + clave + ", nombre=" + nombre + "]";
 	}
 	
 

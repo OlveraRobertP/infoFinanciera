@@ -12,11 +12,11 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import com.robolverap.bo.BitacoraBo;
-import com.robolverap.bo.LoginBo;
-import com.robolverap.bo.PermisoBo;
-import com.robolverap.bo.SecurityBo;
-import com.robolverap.bo.UsuarioBo;
+import com.robolverap.bo.security.BitacoraBo;
+import com.robolverap.bo.security.LoginBo;
+import com.robolverap.bo.security.PermisoBo;
+import com.robolverap.bo.security.SecurityBo;
+import com.robolverap.bo.security.UsuarioBo;
 import com.robolverap.exceptions.SecurityException;
 import com.robolverap.model.app.security.Usuario;
 import com.robolverap.utils.SystemValues;

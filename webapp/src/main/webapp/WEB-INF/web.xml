@@ -17,7 +17,10 @@
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>omega</param-value>
+		<!-- <param-value>bluesky</param-value> -->
+		<!-- <param-value>humanity</param-value> -->
+		<!-- <param-value>glass-x</param-value> -->
+		<param-value>delta</param-value>
 	</context-param>
 	<context-param>
 		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>

@@ -20,10 +20,10 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 
-import com.robolverap.bo.FuncionBo;
-import com.robolverap.bo.ModuloBo;
-import com.robolverap.bo.PermisoBo;
-import com.robolverap.bo.RolBo;
+import com.robolverap.bo.security.FuncionBo;
+import com.robolverap.bo.security.ModuloBo;
+import com.robolverap.bo.security.PermisoBo;
+import com.robolverap.bo.security.RolBo;
 import com.robolverap.model.app.security.Funcion;
 import com.robolverap.model.app.security.Modulo;
 import com.robolverap.model.app.security.Rol;

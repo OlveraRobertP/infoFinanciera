@@ -23,7 +23,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "seg_bitacora")
-public class Bitacora implements Serializable {
+public class Bitacora implements Serializable , Comparable<Bitacora>{
 
 	/**
 	 * 
@@ -117,6 +117,11 @@ public class Bitacora implements Serializable {
 	@Override
 	public String toString() {
 		return "Bitacora [id=" + id + ", descripcion=" + descripcion + ", evento=" + evento.getClave() + "]";
+	}
+
+	@Override
+	public int compareTo(Bitacora o) {
+		return -1 * this.id.compareTo(o.getId());
 	}
 	
 	

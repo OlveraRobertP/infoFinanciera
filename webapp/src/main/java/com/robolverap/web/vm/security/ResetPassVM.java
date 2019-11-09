@@ -15,9 +15,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import com.robolverap.bo.LoginBo;
-import com.robolverap.bo.SecurityBo;
-import com.robolverap.bo.UsuarioBo;
+import com.robolverap.bo.security.LoginBo;
+import com.robolverap.bo.security.SecurityBo;
+import com.robolverap.bo.security.UsuarioBo;
 import com.robolverap.model.app.security.Usuario;
 import com.robolverap.utils.SystemValues;
 import com.robolverap.web.jsf.JsfAppUtils;

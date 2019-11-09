@@ -9,7 +9,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import com.robolverap.bo.RolBo;
+import com.robolverap.bo.security.RolBo;
 import com.robolverap.model.app.security.Rol;
 
 /**

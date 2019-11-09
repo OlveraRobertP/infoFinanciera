@@ -1,0 +1,191 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/mttos.xhtml">
+	<ui:define name="content">
+		<h3>#{lbl['edofin.mtto.title']}</h3>
+		<p:growl id="msgDialog" showDetail="true" showSummary="false"
+			life="5000" escape="false" globalOnly="false" autoUpdate="true" />
+		<h:form id="mainFormEdoFin">
+			<h:panelGrid columns="8">
+				<!-- CLAVE -->
+				<h:outputLabel for="clave" value="#{lbl['edofin.mtto.clave']}" />
+				<p:inputText id="clave" value="#{edoFinVM.entytiEdit.clave}"
+					required="true"
+					requiredMessage="#{lbl['edofin.mtto.required.clave']}"
+					maxlength="15" title="#{lbl['edofin.tooltip.clave']}" size="50">
+				</p:inputText>
+				<p:message for="clave" showSummary="false" showDetail="true" />
+
+				<!-- NOMBRE -->
+				<h:outputLabel for="nombre" value="#{lbl['edofin.mtto.nombre']}" />
+				<p:inputText id="nombre" value="#{edoFinVM.entytiEdit.nombre}"
+					required="true"
+					requiredMessage="#{lbl['edofin.mtto.required.nombre']}"
+					maxlength="100" title="#{lbl['edofin.tooltip.nombre']}" size="50">
+				</p:inputText>
+				<p:message for="nombre" showSummary="false" showDetail="true" />
+
+				<!-- DESCRIPCION -->
+				<h:outputLabel for="descripcion"
+					value="#{lbl['edofin.mtto.descripcion']}" />
+				<p:inputTextarea rows="4" cols="50" id="descripcion"
+					value="#{edoFinVM.entytiEdit.descripcion}" maxlength="200"
+					title="#{lbl['edofin.tooltip.descripcion']}">
+				</p:inputTextarea>
+				<p:message for="descripcion" showSummary="false" showDetail="true" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{btn['global.save']}"
+						update="mainFormEdoFin,msgDialog"
+						onstart="PF('blockUiEditGuardarEdoFin').show()"
+						oncomplete="PF('blockUiEditGuardarEdoFin').hide()"
+						actionListener="#{edoFinVM.saveOrUpdate()}" />
+					<p:commandButton value="#{btn['global.back']}"
+						action="edoFin.xhtml" immediate="true" validateClient="false" />
+				</f:facet>
+
+			</h:panelGrid>
+			<p:blockUI block="mainFormEdoFin"
+				widgetVar="blockUiEditGuardarEdoFin">
+				<h:panelGroup>
+					<h:outputText
+						styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+					<br />
+					<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+				</h:panelGroup>
+			</p:blockUI>
+
+		</h:form>
+
+		<h:form id="mainFormCta">
+
+			<p:separator />
+
+			<h4>#{lbl['edofin.mtto.add.cuentas']}</h4>
+
+			<h:panelGrid columns="8">
+				<!-- CLAVE -->
+				<h:outputLabel for="claveCta" value="#{lbl['edofin.mtto.claveCta']}" />
+				<p:inputText id="claveCta" value="#{edoFinVM.cuentaEdit.clave}"
+					required="true"
+					requiredMessage="#{lbl['edofin.mtto.required.claveCta']}"
+					maxlength="15" title="#{lbl['edofin.tooltip.claveCta']}" size="50">
+				</p:inputText>
+				<p:message for="claveCta" showSummary="false" showDetail="true" />
+
+				<!-- NOMBRE -->
+				<h:outputLabel for="nombreCta"
+					value="#{lbl['edofin.mtto.nombreCta']}" />
+				<p:inputText id="nombreCta" value="#{edoFinVM.cuentaEdit.nombre}"
+					required="true"
+					requiredMessage="#{lbl['edofin.mtto.required.nombreCta']}"
+					maxlength="100" title="#{lbl['edofin.tooltip.nombreCta']}"
+					size="50">
+				</p:inputText>
+				<p:message for="nombreCta" showSummary="false" showDetail="true" />
+				
+				<!-- ES FORMULA -->
+				<h:outputLabel for="esFormula"
+					value="#{lbl['edofin.mtto.esFormula']}" />
+				<p:selectBooleanButton id="esFormula" 
+    				value="#{edoFinVM.cuentaEdit.esFormula}" onLabel="#{lbl['global.yes']}" offLabel="#{lbl['global.no']}"
+    				onIcon="fa fa-fw fa-check" offIcon="fa fa-fw fa-times" style="width:70px">
+    				<p:ajax update="formula" event="valueChange"></p:ajax>
+    			</p:selectBooleanButton>
+				<p:message for="esFormula" showSummary="false" showDetail="true" />
+				
+				<!--FORMULA -->
+				<h:outputLabel for="formula"
+					value="#{lbl['edofin.mtto.formula']}" />
+				<p:inputText id="formula" value="#{edoFinVM.cuentaEdit.formula}"
+					maxlength="1000" title="#{lbl['edofin.tooltip.formula']}"
+					disabled="#{not edoFinVM.cuentaEdit.esFormula}"
+					size="50">
+				</p:inputText>
+				<p:message for="formula" showSummary="false" showDetail="true" />
+				
+				
+
+				<f:facet name="footer">
+					<p:commandButton value="#{btn['edofin.partida.add']}"
+						process="@form" update="mainFormCta,msgDialog,formCtas"
+						onstart="PF('blockUiEditGuardarCta').show()"
+						oncomplete="PF('blockUiEditGuardarCta').hide()"
+						action="#{edoFinVM.saveCuenta()}" />
+				</f:facet>
+			</h:panelGrid>
+			
+			<p:blockUI block="mainFormCta" widgetVar="blockUiEditGuardarCta">
+				<h:panelGroup>
+					<h:outputText
+						styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+					<br />
+					<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+				</h:panelGroup>
+			</p:blockUI>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="#{btn['global.si']}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{btn['global.no']}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+			
+			</h:form>
+			
+			<h:form id="formCtas">
+
+			<p:dataTable value="#{edoFinVM.entytiEdit.cuentas}" var="cta" 
+				emptyMessage="#{lbl['global.table.noresult']}">
+				<p:column headerText="#{lbl['edofin.cuentas.table.cols.clave']}">
+					<h:outputText value="#{cta.clave}" />
+				</p:column>
+				<p:column headerText="#{lbl['edofin.cuentas.table.cols.nombre']}">
+					<h:outputText value="#{cta.nombre}" />
+				</p:column>
+				
+				<p:column headerText="#{lbl['edofin.cuentas.table.cols.esFormula']}">
+					<h:outputText value="#{cta.esFormula eq true ? lbl['global.yes'] : lbl['global.no']}" />
+				</p:column>
+				
+				<p:column headerText="#{lbl['edofin.cuentas.table.cols.formula']}">
+					<h:outputText value="#{cta.formula}" />
+				</p:column>
+
+				<p:column headerText="#{lbl['edofin.cuentas.table.cols.actions']}">
+					<p:commandButton icon="fa fa-fw fa-edit"
+						action="#{edoFinVM.editarCuenta(cta)}" 
+						update="mainFormCta,msgDialog"
+						onstart="PF('blockUiEditGuardarCta').show()"
+						oncomplete="PF('blockUiEditGuardarCta').hide()"
+						title="#{lbl['edofin.tooltip.edit.cuenta']}">
+					</p:commandButton>
+					<p:commandButton icon="fa fa-fw fa-remove"
+						update="formCtas,msgDialog"
+						action="#{edoFinVM.eliminarCuenta(cta)}" 
+						onstart="PF('blockUiEditGuardarCta').show()"
+						oncomplete="PF('blockUiEditGuardarCta').hide()"
+						title="#{lbl['edofin.tooltip.borrar.cuenta']}">
+						<p:confirm header="#{lbl['global.lbl.confirm']}"
+							message="#{msg['edofin.confirm.borrar.cuenta']}"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			</h:form>
+
+		
+
+
+
+
+	</ui:define>
+</ui:composition>
+</html>

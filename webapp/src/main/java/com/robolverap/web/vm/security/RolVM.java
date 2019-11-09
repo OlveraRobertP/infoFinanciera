@@ -19,7 +19,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
-import com.robolverap.bo.RolBo;
+import com.robolverap.bo.security.RolBo;
 import com.robolverap.model.app.security.Rol;
 import com.robolverap.model.app.security.Usuario;
 import com.robolverap.web.jsf.JsfAppUtils;

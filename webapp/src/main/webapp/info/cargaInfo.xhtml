@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/main.xhtml">
+	<ui:define name="content">
+		<p:growl id="msg" showDetail="true" life="5000" escape="false"
+			globalOnly="false" />
+		<h:form id="mainForm">
+			<div class="container">
+				<p:spacer width="100" height="1" />
+				<p:outputLabel
+					value="#{lbl['caraginf.find.edofin']}" />
+				<p:selectOneMenu id="edoFinSelected" 
+					value="#{caragInfVM.selectedEdoFin}"
+					converter="#{edoFinConverter}"
+					required="true" 
+					title="#{lbl['caraginf.find.tooltip.edofin']}"
+					requiredMessage="#{msg['caraginf.find.requeried.edofin']}"
+					dropdown="true">
+					<f:selectItem itemLabel="#{lbl['global.lbl.select']}"
+						noSelectionOption="true" />
+					<f:selectItems var="edo"
+						value="#{caragInfVM.estadosFinancieros}"
+						itemLabel="#{edo.clave} - #{edo.nombre}" itemValue="#{edo}" />
+				</p:selectOneMenu>
+				<p:spacer width="100" height="1" />
+				<p:outputLabel
+					value="#{lbl['caraginf.find.fecha']}" />
+				<p:selectOneMenu id="mes" value="#{caragInfVM.monthSelected}"
+					required="true" title="#{lbl['caraginf.find.tooltip.month']}"
+					requiredMessage="#{msg['caraginf.find.requeried.month']}"
+					dropdown="true">
+					<f:selectItem itemLabel="#{lbl['global.lbl.select']}"
+						noSelectionOption="true" />
+					<f:selectItems var="r"
+						value="#{caragInfVM.calendarService.monthsOfYear().entrySet()}"
+						itemLabel="#{lbl[r.value]}" itemValue="#{r.key}" />
+					<!-- <p:ajax event="valueChange" update="btnPdf" /> -->
+				</p:selectOneMenu>
+				<p:selectOneMenu id="year" value="#{caragInfVM.yearSelected}"
+					required="true" title="#{lbl['caraginf.find.tooltip.year']}"
+					requiredMessage="#{msg['caraginf.find.requeried.year']}"
+					dropdown="true">
+					<f:selectItem itemLabel="#{lbl['global.lbl.select']}"
+						noSelectionOption="true" />
+					<f:selectItems var="r"
+						value="#{caragInfVM.calendarService.lastYears()}"
+						itemLabel="#{r}" itemValue="#{r}" />
+					<!-- <p:ajax event="valueChange" update="btnPdf,btnExcel" /> -->
+				</p:selectOneMenu>
+				<p:spacer width="20" height="1" />
+				<p:commandButton icon="fa fa-fw fa-search"
+					value="#{btn['global.find']}"
+					actionListener="#{caragInfVM.find}"
+					update="mainForm,mes,year,msg" onstart="PF('blockUi').show()"
+					onsuccess="PF('blockUi').hide();"
+					title="#{lbl['caraginf.find.tooltip.find']}">
+				</p:commandButton>
+			</div>	
+			
+			<p:dataTable value="#{caragInfVM.info}" var="cta" 
+				emptyMessage="#{lbl['global.table.noresult']}">
+				<p:column headerText="#{lbl['caraginf.cuentas.table.cols.clave']}">
+					<h:outputText value="#{cta.clave}" />
+				</p:column>
+				<p:column headerText="#{lbl['caraginf.cuentas.table.cols.nombre']}">
+					<h:outputText value="#{cta.nombre}" />
+				</p:column>
+				
+				<p:column headerText="#{lbl['caraginf.cuentas.table.cols.valor']}">
+					<p:inputText id="hdhd"></p:inputText>
+				</p:column>
+				
+				
+			</p:dataTable>
+			
+		</h:form>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="#{btn['global.si']}" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="#{btn['global.no']}" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>
+</html>

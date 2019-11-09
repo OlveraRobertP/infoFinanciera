@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.robolverap.bo.SecurityBo;
+import com.robolverap.bo.security.SecurityBo;
 import com.robolverap.model.app.security.Usuario;
 import com.robolverap.utils.SystemValues;
 

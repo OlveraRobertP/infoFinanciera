@@ -15,7 +15,7 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
-import com.robolverap.bo.PermisoBo;
+import com.robolverap.bo.security.PermisoBo;
 import com.robolverap.model.app.security.Funcion;
 import com.robolverap.model.app.security.Modulo;
 import com.robolverap.model.app.security.Usuario;

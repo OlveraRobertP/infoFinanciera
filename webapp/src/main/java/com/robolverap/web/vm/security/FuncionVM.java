@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
-import com.robolverap.bo.FuncionBo;
+import com.robolverap.bo.security.FuncionBo;
 import com.robolverap.model.app.security.Funcion;
 
 /**
