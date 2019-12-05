@@ -1,0 +1,61 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/templates/mttos.xhtml">
+	<ui:define name="content">
+		<h3>#{lbl['tipoemp.mtto.title']}</h3>
+		<p:growl id="msgDialog" showDetail="true" showSummary="false"
+			life="5000" escape="false" globalOnly="false" autoUpdate="true" />
+		<h:form id="mainForm">
+			<h:panelGrid columns="8">
+			
+				<!-- CLAVE -->
+				<h:outputLabel for="clave" value="#{lbl['tipoemp.mtto.clave']}" />
+				<p:inputText id="clave" value="#{tipoEmpresaVM.entytiEdit.clave}"
+					required="true"
+					requiredMessage="#{lbl['tipoemp.mtto.required.clave']}"
+					maxlength="15" title="#{lbl['tipoemp.tooltip.clave']}" size="50">
+				</p:inputText>
+				<p:message for="clave" showSummary="false" showDetail="true" />
+
+				<!-- NOMBRE -->
+				<h:outputLabel for="nombre" value="#{lbl['tipoemp.mtto.nombre']}" />
+				<p:inputText id="nombre" value="#{tipoEmpresaVM.entytiEdit.nombre}"
+					required="true"
+					requiredMessage="#{lbl['tipoemp.mtto.required.nombre']}"
+					maxlength="100" title="#{lbl['tipoemp.tooltip.nombre']}" size="50">
+				</p:inputText>
+				<p:message for="nombre" showSummary="false" showDetail="true" />
+
+
+				<f:facet name="footer">
+					<p:commandButton value="#{btn['global.save']}"
+						update="mainForm,msgDialog"
+						onstart="PF('blockUiMain').show()"
+						oncomplete="PF('blockUiMain').hide()"
+						actionListener="#{tipoEmpresaVM.saveOrUpdate()}" />
+					<p:commandButton value="#{btn['global.back']}"
+						action="tipoEmp.xhtml" immediate="true" validateClient="false" />
+				</f:facet>
+
+			</h:panelGrid>
+			<p:blockUI block="mainForm"
+				widgetVar="blockUiMain">
+				<h:panelGroup>
+					<h:outputText
+						styleClass="fa fa-fw fa-cog fa-default-loading-ico-size fa-spin" />
+					<br />
+					<h:outputText value="#{lbl['global.lbl.wait']}" escape="false" />
+				</h:panelGroup>
+			</p:blockUI>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

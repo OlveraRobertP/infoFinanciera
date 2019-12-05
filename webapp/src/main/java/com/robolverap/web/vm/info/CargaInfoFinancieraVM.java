@@ -1,8 +1,11 @@
 package com.robolverap.web.vm.info;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -10,16 +13,18 @@ import javax.faces.bean.SessionScoped;
 import com.robolverap.bo.info.CargaInfoFinancieraBo;
 import com.robolverap.bo.info.EstadoFinancieroBo;
 import com.robolverap.bo.security.BitacoraBo;
-import com.robolverap.model.app.financieros.Cuenta;
 import com.robolverap.model.app.financieros.EstadoFinanciero;
+import com.robolverap.model.app.security.Usuario;
 import com.robolverap.services.CalendarService;
+import com.robolverap.web.dto.InfoFinancieraDto;
+import com.robolverap.web.jsf.JsfAppUtils;
 import com.robolverap.web.vm.security.SessionVM;
 
 /**
  * @author jrobolvp
  *
  */
-@ManagedBean(name = "caragInfVM")
+@ManagedBean(name = "cargaInfVM")
 @SessionScoped
 public class CargaInfoFinancieraVM {
 	@PostConstruct
@@ -32,6 +37,13 @@ public class CargaInfoFinancieraVM {
 
 	public void setSessionBean(SessionVM sessionBean) {
 		this.sessionBean = sessionBean;
+	}
+	
+	@ManagedProperty("#{msg}")
+	private ResourceBundle msgBundle;
+	
+	public void setMsgBundle(ResourceBundle msgBundle) {
+		this.msgBundle = msgBundle;
 	}
 	
 	@ManagedProperty("#{calendarService}")
@@ -61,6 +73,10 @@ public class CargaInfoFinancieraVM {
 	
 	@ManagedProperty("#{caragInfoFinBo}")
 	private CargaInfoFinancieraBo caragInfoFinBo;
+	
+	public void setCaragInfoFinBo(CargaInfoFinancieraBo caragInfoFinBo) {
+		this.caragInfoFinBo = caragInfoFinBo;
+	}
 	
 	
 	private EstadoFinanciero selectedEdoFin;
@@ -101,9 +117,9 @@ public class CargaInfoFinancieraVM {
 	
 	private String fechaSelected;
 	
-	private List<Cuenta> info;
+	private List<InfoFinancieraDto> info;
 	
-	public List<Cuenta> getInfo() {
+	public List<InfoFinancieraDto> getInfo() {
 		return info;
 	}
 	
@@ -123,19 +139,29 @@ public class CargaInfoFinancieraVM {
 	}
 	
 	public void find() {
-		this.info = this.caragInfoFinBo.findByEdoFinancieroByFecha(this.selectedEdoFin,this.yearSelected,this.yearSelected);
-//		try {
-//			info = this.admonReportsBo.extraeBalanceGral(this.yearSelected, this.monthSelected);
-//			fechaSelected = DateFormat.formatFull(this.monthSelected,this.yearSelected);
-//			this.bitacoraBo.add("DATOS DE LA CONSULTA: "+"MES: "+this.monthSelected+ " , AÑO: "+this.yearSelected,
-//					this.sessionBean.getUserInSession(), BitacoraEventClaves.CON_BAL_GRL);
-//		}catch(Exception e) {
-//			info = null;
-//			fechaSelected= null;
-//			e.printStackTrace();
-//			JsfAppUtils.addResultMessage(FacesMessage.SEVERITY_ERROR,e.getMessage(),null);
-//		}
+		this.info = this.caragInfoFinBo.findByEdoFinancieroByFecha(this.selectedEdoFin,this.yearSelected,this.monthSelected);
+	}
+	
+	public void save() {
+		Severity severity = FacesMessage.SEVERITY_INFO;
+		String messageTitle =  msgBundle.getString("global.save.sucess");
+		String messageDetail = msgBundle.getString("carga.save.sucess.detail");
 		
+		try {
+			Usuario us = this.sessionBean.getUserInSession();
+			
+			this.caragInfoFinBo.saveInfo(this.info,us,this.yearSelected,this.monthSelected);
+			
+
+		}
+		catch (Exception e) {
+			severity = FacesMessage.SEVERITY_ERROR;
+			messageTitle =  msgBundle.getString("global.error");
+			messageDetail = e.getMessage();
+			e.printStackTrace();
+		}
+		
+		JsfAppUtils.addResultMessage(severity,messageTitle,messageDetail);
 	}
 	
 	public String excel() {

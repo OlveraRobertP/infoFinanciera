@@ -1,13 +1,8 @@
-/**
- * 
- */
-package com.robolverap.model.app.financieros;
+package com.robolverap.model.app.admon;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,14 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import com.robolverap.model.app.admon.TipoEmpresa;
 import com.robolverap.model.app.security.Usuario;
 
 /**
@@ -31,30 +20,24 @@ import com.robolverap.model.app.security.Usuario;
  *
  */
 @Entity
-@Table(name = "fin_edos_financieros")
-public class EstadoFinanciero implements Serializable{
-
-	
-
+@Table(name = "adm_empresa")
+public class Empresa implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 825484873276120600L;
+	private static final long serialVersionUID = 1310565660004007769L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "ID", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column (name = "CLAVE", unique = true, nullable = false, length = 15)
-	private String clave;
+	@Column (name = "NUMERO",  length = 25)
+	private String numero;
 	
-	@Column (name = "NOMBRE", nullable = false, length = 100)
+	@Column (name = "NOMBRE", nullable = false, length = 150)
 	private String nombre;
-	
-	@Column (name = "DESCRIPCION", nullable = true, length = 200)
-	private String descripcion;
-	
+
 	@Column(name = "F_ALTA", nullable = false)
 	private Date fecReg;
 
@@ -69,11 +52,6 @@ public class EstadoFinanciero implements Serializable{
 	@JoinColumn(name = "ID_USUARIO_MODIF")
 	private Usuario usuMod;
 	
-	@OneToMany(mappedBy = "edoFinanciero", cascade = CascadeType.ALL, fetch  = FetchType.EAGER)
-	@OrderBy("id ASC")
-	@Fetch (FetchMode.SELECT) 
-    private List<Cuenta> cuentas;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ID_TIPO_EMPRESA")
 	private TipoEmpresa tipoEmpresa;
@@ -86,12 +64,12 @@ public class EstadoFinanciero implements Serializable{
 		this.id = id;
 	}
 
-	public String getClave() {
-		return clave;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setClave(String clave) {
-		this.clave = clave;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public String getNombre() {
@@ -100,14 +78,6 @@ public class EstadoFinanciero implements Serializable{
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 	public Date getFecReg() {
@@ -142,14 +112,6 @@ public class EstadoFinanciero implements Serializable{
 		this.usuMod = usuMod;
 	}
 
-	public List<Cuenta> getCuentas() {
-		return cuentas;
-	}
-
-	public void setCuentas(List<Cuenta> cuentas) {
-		this.cuentas = cuentas;
-	}
-
 	public TipoEmpresa getTipoEmpresa() {
 		return tipoEmpresa;
 	}
@@ -157,11 +119,10 @@ public class EstadoFinanciero implements Serializable{
 	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
 		this.tipoEmpresa = tipoEmpresa;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "EstadoFinanciero [id=" + id + ", clave=" + clave + ", nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", tipoEmpresa=" + tipoEmpresa + "]";
+		return "Empresa [id=" + id + ", numero=" + numero + ", nombre=" + nombre + ", tipoEmpresa=" + tipoEmpresa + "]";
 	}
 
 	@Override
@@ -180,7 +141,7 @@ public class EstadoFinanciero implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EstadoFinanciero other = (EstadoFinanciero) obj;
+		Empresa other = (Empresa) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -188,9 +149,6 @@ public class EstadoFinanciero implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
 	
 	
 }

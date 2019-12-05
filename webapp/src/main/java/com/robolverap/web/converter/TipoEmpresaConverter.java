@@ -9,8 +9,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import com.robolverap.bo.info.EstadoFinancieroBo;
+import com.robolverap.bo.admon.TipoEmpresaBo;
 import com.robolverap.model.app.financieros.EstadoFinanciero;
+
 
 /**
  * 
@@ -18,14 +19,14 @@ import com.robolverap.model.app.financieros.EstadoFinanciero;
  * @author jrobolvp
  *
  */
-@ManagedBean(name = "edoFinConverter")
-public class EdoFinancieroConverter implements Converter {
+@ManagedBean(name = "tipoEmpresaConverter")
+public class TipoEmpresaConverter implements Converter {
 
-	@ManagedProperty("#{edoFinBo}")
-	private EstadoFinancieroBo edoFinBo;
+	@ManagedProperty("#{tipoEmpresaBo}")
+	private TipoEmpresaBo tipoEmpresaBo;
 	
-	public void setEdoFinBo(EstadoFinancieroBo edoFinBo) {
-		this.edoFinBo = edoFinBo;
+	public void setTipoEmpresaBo(TipoEmpresaBo tipoEmpresaBo) {
+		this.tipoEmpresaBo = tipoEmpresaBo;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class EdoFinancieroConverter implements Converter {
 		if(value==null){
 			return null;
 		}
-		return edoFinBo.findEdoFinById(Integer.valueOf(value));
+		return tipoEmpresaBo.findById(Integer.valueOf(value));
 	}
 
 	@Override
@@ -45,3 +46,4 @@ public class EdoFinancieroConverter implements Converter {
 	}
 
 }
+

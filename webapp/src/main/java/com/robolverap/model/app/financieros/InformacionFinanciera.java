@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.robolverap.model.app.admon.Empresa;
 import com.robolverap.model.app.security.Usuario;
 
 /**
@@ -62,6 +63,9 @@ public class InformacionFinanciera implements Serializable{
 	@JoinColumn(name = "ID_USUARIO_MODIF")
 	private Usuario usuMod;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_EMPRESA")
+	private Empresa empresa;
 	
 	public Integer getId() {
 		return id;
@@ -126,11 +130,22 @@ public class InformacionFinanciera implements Serializable{
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+	
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
 	@Override
 	public String toString() {
-		return "InformacionFinanciera [id=" + id + ", monto=" + monto + ", cuenta=" + cuenta + ", fecha=" + fecha + "]";
+		return "InformacionFinanciera [id=" + id + ", monto=" + monto + ", cuenta=" + cuenta + ", fecha=" + fecha
+				+ ", empresa=" + empresa + "]";
 	}
+
+	
 
 
 }

@@ -9,11 +9,12 @@
 <body>
 	<ui:composition>
 		<div class="header">
-			<div style="display: inline-block; width: 20%">
-				<img src="#{request.contextPath}/images/logo.jpeg" style="width:100px;height:100px;"/>
-			</div>
-			<div style="display: inline-block; width:60%;">
-				<div style="display: float">
+			<div class="ui-g">
+				<div class="ui-g-12 ui-md-6 ui-lg-2">
+					<img src="#{request.contextPath}/images/logo.jpeg"
+						style="width: 100px; height: 100px;" />
+				</div>
+				<div class="ui-g-12 ui-md-6 ui-lg-7" style="margin-top: 20px;">
 					<h:form>
 						<p:growl id="messages" />
 						<p:menubar model="#{menuVM.model}"
@@ -22,18 +23,19 @@
 								<!-- <p:inputText style="margin:1px 10px 1px 1px;"
 									placeholder="Search" /> -->
 								<p:commandButton value="#{btn['global.logout']}"
-									icon="fa fa-sign-out" 
+									icon="fa fa-sign-out"
 									oncomplete="location.href=login/login.xhtml"
 									action="#{loginVM.logout}" />
 							</f:facet>
 						</p:menubar>
 					</h:form>
 				</div>
-			</div>
-			<div style="display: inline-block; width:15%;padding-left: 30px">
-				<p:outputLabel escape="true" value="#{sessionVM.userInSession.nombre} 
-				#{sessionVM.userInSession.paterno} #{sessionVM.userInSession.rol.nombre}"
-				 rendered="#{menuVM.canViewMenu()}" />
+				<div class="ui-g-12 ui-md-6 ui-lg-3" style="margin-top: 29px;">
+					<p:outputLabel escape="true"
+						value="#{sessionVM.userInSession.nombre} 
+				#{sessionVM.userInSession.paterno} / #{sessionVM.userInSession.rol.nombre}"
+						rendered="#{menuVM.canViewMenu()}" />
+				</div>
 			</div>
 		</div>
 		<p:separator />

@@ -13,7 +13,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import com.robolverap.bo.admon.TipoEmpresaBo;
 import com.robolverap.bo.info.EstadoFinancieroBo;
+import com.robolverap.model.app.admon.TipoEmpresa;
 import com.robolverap.model.app.financieros.Cuenta;
 import com.robolverap.model.app.financieros.EstadoFinanciero;
 import com.robolverap.model.app.security.Usuario;
@@ -75,6 +77,19 @@ public class EstadoFinancieroVM {
 		this.edoFinBo = edoFinBo;
 	}
 	
+	@ManagedProperty("#{tipoEmpresaBo}")
+	private TipoEmpresaBo tipoEmpresaBo;
+	
+	public void setTipoEmpresaBo(TipoEmpresaBo tipoEmpresaBo) {
+		this.tipoEmpresaBo = tipoEmpresaBo;
+	}
+	
+	private List<TipoEmpresa> tiposEmpresas;
+	
+	public List<TipoEmpresa> getTiposEmpresas() {
+		return tiposEmpresas;
+	}
+	
 	@PostConstruct
 	public void init() {
 		resetValues();
@@ -82,10 +97,16 @@ public class EstadoFinancieroVM {
 	
 	private void resetValues() {
 		this.estadosFinancieros = this.edoFinBo.findAll();
+		this.tiposEmpresas = this.tipoEmpresaBo.findAll();
 	}
 	
 	public void editar(EstadoFinanciero edo) {
 		this.entytiEdit = edo;
+		this.cuentaEdit = new Cuenta();
+	}
+	
+	public void add() {
+		this.entytiEdit = new EstadoFinanciero();
 		this.cuentaEdit = new Cuenta();
 	}
 	

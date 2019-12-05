@@ -13,6 +13,22 @@
 			life="5000" escape="false" globalOnly="false" autoUpdate="true" />
 		<h:form id="mainFormEdoFin">
 			<h:panelGrid columns="8">
+			
+				<!-- ENTIDAD -->
+				<h:outputLabel for="entidad" value="#{lbl['edofin.mtto.entidad']}" />
+				<p:selectOneMenu id="entidad"
+					value="#{edoFinVM.entytiEdit.tipoEmpresa}" converter="#{tipoEmpresaConverter}"
+					required="true" title="#{lbl['edofin.mtto.tooltip.entidad']}"
+					requiredMessage="#{msg['edofin.mtto.requeried.entidad']}"
+					dropdown="true">
+					<f:selectItem itemLabel="#{lbl['global.lbl.select']}"
+						noSelectionOption="true" />
+					<f:selectItems var="edo" value="#{edoFinVM.tiposEmpresas}"
+						itemLabel="#{edo.clave} - #{edo.nombre}" itemValue="#{edo}" />
+				</p:selectOneMenu>
+				<p:message for="entidad" showSummary="false" showDetail="true" />
+				
+				
 				<!-- CLAVE -->
 				<h:outputLabel for="clave" value="#{lbl['edofin.mtto.clave']}" />
 				<p:inputText id="clave" value="#{edoFinVM.entytiEdit.clave}"

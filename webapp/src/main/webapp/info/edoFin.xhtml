@@ -13,6 +13,13 @@
 		<h:form id="mainForm">
 			<div class="container">
 				<h:form>
+				
+					<p:commandButton icon="fa fa-fw fa-plus"
+									action="edoFinMtto.xhtml"
+									actionListener="#{edoFinVM.add}"
+									value="#{btn['edofin.add']}"
+									title="#{lbl['edofin.tooltip.add']}">
+								</p:commandButton>
 					
 					<p:separator />
 					<p:dataTable var="reg" value="#{edoFinVM.estadosFinancieros}"
